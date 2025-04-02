@@ -1,0 +1,71 @@
+.box-messages-input {
+    font-size: 18px;
+    border-radius: 10px;
+    border: solid 1px #ddd;
+    border-collapse: collapse;
+    color: #606060;
+}
+
+.box-header{
+    display: flex;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+    background-color: #f8f8f8;
+    padding: 6px 12px;
+    gap: 8px;
+    
+}
+.box-content{
+    display: flex;
+    padding: 8px 12px;
+    & input{
+
+        width: 100%;
+        border: none;
+        padding: 0;
+        border: none;
+        
+    }
+    & input:focus{
+        /* border-color: none; */
+        box-shadow: none;
+    }
+}
+
+.box-footer{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    & button{
+        gap:5px;
+        color: #BBBABB;
+        background-color: transparent;
+        padding: 0;
+        padding: 2px;
+        margin: 0;
+    }    
+    
+}
+.box-footer .plus,
+.box-footer .icons,
+.box-footer .send {
+    
+    display: flex;
+    align-items: center;
+    
+    
+}
+.box-footer .icons {        
+    padding: 4px 0;        
+    color: #606060;
+    gap: 8px;
+    
+}
+
+.separator {
+    width: 1px;
+    height: 18px;
+    background-color: #ccc;    
+}

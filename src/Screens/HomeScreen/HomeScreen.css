@@ -1,0 +1,53 @@
+.home{    
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.workspace{
+    width: 95.8%;
+    display: flex;
+    justify-content: stretch;
+    
+}
+.body{
+    background-color: var(--primary-color);
+    width: 100%;
+    height:100vh;
+    color: black;
+    display: flex;
+}
+.messages{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0 5px 5px 0;
+    background-color: white;
+    width: 76%;
+}
+.channels{
+    background-color: var(--third-color);
+    padding: 5px 15px;
+    border-radius: 5px 0 0 0;
+    width: 24%;    
+}
+.sidebar{
+    padding: 5px 5px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 4%;
+}
+.spinner-workspace{
+    margin-left: 10px;
+}
+.box-messages {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 12px;
+    border: none; /* Asegúrate de que no tenga borde */
+}

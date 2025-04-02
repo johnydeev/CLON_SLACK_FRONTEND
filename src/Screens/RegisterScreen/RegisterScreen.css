@@ -1,0 +1,14 @@
+.register{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    background-color: var(--primary-color);
+    height: 100vh;
+}
+.navbar-register{
+    display: flex;
+}
+.form-register{
+    display: flex;
+}
