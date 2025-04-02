@@ -1,57 +1,65 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import ENVIROMENT from "../../config/environment";
+import { AuthContext } from "../../Context/authContext";
+import './FormResetPassword.css'
+import { useForm } from "../../hooks/useForm";
+import useApiRequest from "../../hooks/useApiRequest";
+import { toast } from "sonner";
+import Spinner from "../../Utils/Spinner/Spinner";
 
 export const FormResetPassword = () => {
     const { isAuthenticatedState, userState, login, getUser } =
         useContext(AuthContext);
-    const { workspaceState } = useContext(WorkspaceContext);
-
-    console.log("Esta autenticado: ", isAuthenticatedState);
-    console.log("workspace data:", workspaceState);
-    console.log("userState data:", userState);
+    
     const userId = userState._id;
     console.log("USERID>>", userId);
     const formInitialState = {
-        email: "",
-        password: "",
+        email: "",        
     };
 
     const { formState, handleOnChange } = useForm(formInitialState);
 
     const { responseApiState, postRequest } = useApiRequest(
-        `${ENVIROMENT.URL_API}/api/auth/login`
+        `${ENVIROMENT.URL_API}/api/auth/reset-password`
     );
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isAuthenticatedState && userState._id) {
-            // Asegurar que _id esté presente
+        const currentPath = window.location.pathname;
+
+        if (
+            isAuthenticatedState &&
+            userState._id &&
+            currentPath !== "/reset-password"
+        ) {
             navigate(`/user/${userState._id}/workspaces`);
         }
     }, [isAuthenticatedState, userState._id, navigate]);
 
+    const token = JSON.parse(sessionStorage.getItem("authorization_token"));
     const handleSubmit = async (event) => {
         event.preventDefault();
         toast("Cargando...", {
             icon: <Spinner />,
             duration: 4000,
         });
-        const response = await postRequest(formState);
+        console.log("Token obtenido en box-messages:", token);
+        const response = await postRequest({
+            email: formState.email,
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
         console.log("Response>>", response);
-        if (response.payload.authorization_token) {
-            console.log("ResponseApiSubmit>>", responseApiState);
-            login(response.payload.authorization_token.authorization_token);
-            await getUser();
-            // navigate(`/user/${workspaceState.data.user_id}/workspaces`);
-        } else {
-            console.error("Error: La respuesta de la API no es válida.");
-            toast.error("Error al iniciar sesión.");
-        }
+        
     };
 
     return (
         <div className="container">
-            <h1>Ingresa a tu cuenta</h1>
+            <h1>Recupera tu cuenta ingresando tu email registrado</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
@@ -63,23 +71,11 @@ export const FormResetPassword = () => {
                         autoComplete="username"
                         onChange={handleOnChange}
                     />
-                </div>
+                </div>                
 
                 <div className="form-group">
-                    <label htmlFor="password">Contraseña</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Ingresa tu contraseña"
-                        autoComplete="current-password"
-                        onChange={handleOnChange}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <Link to={`http://localhost:5173/reset-password`}>
-                        ¿Olvidaste tu contraseña?
+                    <Link to={`${ENVIROMENT.URL_API}/register`}>
+                        ¿No estas registrado? Click Aqui
                     </Link>
                     <button type="submit">Loguear</button>
                 </div>
