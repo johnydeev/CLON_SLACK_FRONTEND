@@ -27,11 +27,17 @@ export const FormLogin = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isAuthenticatedState && userState._id) {
-            // Asegurar que _id esté presente
+        const currentPath = window.location.pathname;
+
+        if (
+            isAuthenticatedState &&
+            userState._id &&
+            currentPath !== "/login"
+        ) {
             navigate(`/user/${userState._id}/workspaces`);
         }
     }, [isAuthenticatedState, userState._id, navigate]);
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -58,7 +64,6 @@ export const FormLogin = () => {
         <div className="container">
             <h1>Ingresa a tu cuenta</h1>
             <form onSubmit={handleSubmit}>
-
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input
@@ -84,9 +89,8 @@ export const FormLogin = () => {
                 </div>
 
                 <div className="form-group">
-                    <Link to={`http://localhost:5173/reset-password`}>
-                        ¿Olvidaste tu contraseña?
-                    </Link>
+                    <Link to="/reset-password">¿Olvidaste tu contraseña?</Link>
+
                     <button type="submit">Loguear</button>
                 </div>
             </form>
