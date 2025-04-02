@@ -1,12 +1,15 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import useApiRequest from "../hooks/useApiRequest";
 import ENVIROMENT from "../config/environment";
 import { handleError } from "../Utils/error.utils";
+import { AuthContext } from "./authContext";
 
 export const WorkspaceContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const WorkspaceContextProvider = ({ children }) => {
+
+    const {isAuthenticatedState} = useContext(AuthContext)
     const { responseApiState, getRequest } = useApiRequest(
         `${ENVIROMENT.URL_API}/api/workspaces`
     );
@@ -85,9 +88,10 @@ export const WorkspaceContextProvider = ({ children }) => {
     
 
     useEffect(() => {
-        
-        getWorkspaces();
-    }, []); 
+        if (isAuthenticatedState) {
+            getWorkspaces();
+        }
+    }, [isAuthenticatedState]);
 
     return (
         <WorkspaceContext.Provider

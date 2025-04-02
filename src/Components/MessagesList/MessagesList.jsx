@@ -78,7 +78,7 @@ const MessagesList = ({ channel_id, refreshMessages }) => {
                     </div>
                 ))
             ) : (
-                <p>No hay mensajes en este canal</p>
+                <p className="message-not-found">No hay mensajes en este canal</p>
             )}
         </div>
     );

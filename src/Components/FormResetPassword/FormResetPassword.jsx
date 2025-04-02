@@ -1,18 +1,15 @@
-import React, { useContext, useEffect } from "react";
-import ENVIROMENT from "../../config/environment";
-import { useForm } from "../../hooks/useForm";
-import useApiRequest from "../../hooks/useApiRequest";
-import { toast } from "sonner";
-import { Link, useNavigate } from "react-router-dom";
-import Spinner from "../../Utils/Spinner/Spinner";
-import "./FormLogin.css";
-import { AuthContext } from "../../Context/authContext";
+import React from "react";
 
+export const FormResetPassword = () => {
+    const { isAuthenticatedState, userState, login, getUser } =
+        useContext(AuthContext);
+    const { workspaceState } = useContext(WorkspaceContext);
 
-export const FormLogin = () => {
-    const { isAuthenticatedState, userState, login, getUser } = useContext(AuthContext);    
-    const userId = userState._id
-    console.log("USERID>>",userId)
+    console.log("Esta autenticado: ", isAuthenticatedState);
+    console.log("workspace data:", workspaceState);
+    console.log("userState data:", userState);
+    const userId = userState._id;
+    console.log("USERID>>", userId);
     const formInitialState = {
         email: "",
         password: "",
@@ -42,23 +39,20 @@ export const FormLogin = () => {
         const response = await postRequest(formState);
         console.log("Response>>", response);
         if (response.payload.authorization_token) {
-            console.log("ResponseApiSubmit>>", responseApiState);            
+            console.log("ResponseApiSubmit>>", responseApiState);
             login(response.payload.authorization_token.authorization_token);
             await getUser();
             // navigate(`/user/${workspaceState.data.user_id}/workspaces`);
         } else {
             console.error("Error: La respuesta de la API no es válida.");
-            toast.error(
-                "Error al iniciar sesión."
-            );
-        }       
-    }
+            toast.error("Error al iniciar sesión.");
+        }
+    };
 
     return (
         <div className="container">
             <h1>Ingresa a tu cuenta</h1>
             <form onSubmit={handleSubmit}>
-
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input
