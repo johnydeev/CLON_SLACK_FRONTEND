@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiArrowDownSLine, RiMenu5Line } from "react-icons/ri";
 import { BiEdit } from "react-icons/bi";
 import { BsChatText } from "react-icons/bs";
@@ -11,7 +11,7 @@ import "./Channels.css";
 import { useForm } from "../../hooks/useForm";
 import { handleError, ServerError } from "../../Utils/error.utils";
 
-const Channels = ({ workspace }) => {
+const Channels = ({ workspace, onChannelSelect }) => {
     const { name, _id: workspace_id, channels } = workspace;
 
     const formInitialState = {
@@ -32,37 +32,41 @@ const Channels = ({ workspace }) => {
     const toggleChannelDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
     const token = JSON.parse(sessionStorage.getItem("authorization_token"));
+
     const handleCreateChannel = async (e) => {
         try {
-            e.preventDefault();           
+            e.preventDefault();
 
             console.log("Token obtenido en Channels:", token);
             const headers = {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             };
-            console.log("FormState en channels: ",formState)
+            console.log("FormState en channels: ", formState);
 
             const response = await postRequest({
                 name: formState.name,
                 headers,
             });
-            if(!response){
-                throw new ServerError("Error al obtener respuesta de la API", 500)
+            if (!response) {
+                throw new ServerError(
+                    "Error al obtener respuesta de la API",
+                    500
+                );
             }
+            toggleChannelDropdown();
         } catch (error) {
             console.log("Error al crear un canal", error);
             handleError(error);
         }
     };
+    useEffect(() => {}, [formState]);
 
     return (
         <>
             <div className="channels-header">
-                <button>
-                    <Link className="color-w" to={"/workspace/1"}>
-                        {name} <RiArrowDownSLine />
-                    </Link>
+                <button className="workspace-btn">
+                    {name} <RiArrowDownSLine />
                 </button>
                 <div className="channels-header-menu-btn">
                     <button className="channels-header-btn">
@@ -140,12 +144,17 @@ const Channels = ({ workspace }) => {
                                             {channels && channels.length > 0 ? (
                                                 <ul>
                                                     {channels.map(
-                                                        (item, index) => (
-                                                            <li key={index}>
-                                                                #{" "}
-                                                                <span>
-                                                                    {item.name}
-                                                                </span>
+                                                        (channel, index) => (
+                                                            <li
+                                                                key={index}
+                                                                onClick={() =>
+                                                                    onChannelSelect(
+                                                                        channel
+                                                                    )
+                                                                }
+                                                                className="channel-item"
+                                                            >
+                                                                # {channel.name}
                                                             </li>
                                                         )
                                                     )}

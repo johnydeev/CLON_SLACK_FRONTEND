@@ -6,7 +6,7 @@ import { NavbarRegister } from "../../Components/NavbarRegister/NavbarRegister";
 import WorkspaceList from "../../Components/WorkspaceList/WorkspaceList";
 const WorkspacesScreen = () => {
 
-    const { isAuthenticatedState, userState } = useContext(AuthContext);
+    const {  userState } = useContext(AuthContext);
     const { workspaceState, getWorkspaces, createWorkspace } = useContext(WorkspaceContext);
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,8 +19,6 @@ const WorkspacesScreen = () => {
         }
     }, [userState._id]);  
     console.log("workspaceState Screen:", workspaceState);
-    console.log("Esta autenticado: ", isAuthenticatedState);
-    console.log("userStateScreen>>>", userState);
     const workspaces = workspaceState?.data ?? [];
 
 

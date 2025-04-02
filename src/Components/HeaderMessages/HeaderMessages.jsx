@@ -8,12 +8,12 @@ import { VscNewFile } from "react-icons/vsc";
 import { GoStack } from "react-icons/go";
 import { BsPinAngle } from "react-icons/bs";
 import "./HeaderMessages.css";
-const HeaderMessages = () => {
+const HeaderMessages = ({ channel_name }) => {
     return (
         <div className="header-messages">
             <div className="header-messages-top">
                 <div className="header-messages-top-w-name">
-                    <HiOutlineHashtag /> {"general"}
+                    <HiOutlineHashtag /> {channel_name}
                 </div>
                 <div className="header-messages-top-buttons">
                     <button className="header-messages-top-buttons-left">
@@ -31,10 +31,22 @@ const HeaderMessages = () => {
                 </div>
             </div>
             <div className="header-messages-bottom">
-                <button> <TbMessageCircleFilled /> Mensajes</button>
-                <button> <VscNewFile /> Añadir canvas</button>
-                <button> <GoStack /> Archivos</button>
-                <button> <BsPinAngle /> Chinchetas</button>
+                <button>
+                    {" "}
+                    <TbMessageCircleFilled /> Mensajes
+                </button>
+                <button>
+                    {" "}
+                    <VscNewFile /> Añadir canvas
+                </button>
+                <button>
+                    {" "}
+                    <GoStack /> Archivos
+                </button>
+                <button>
+                    {" "}
+                    <BsPinAngle /> Chinchetas
+                </button>
                 <button className="plus">
                     <FaPlus />
                 </button>

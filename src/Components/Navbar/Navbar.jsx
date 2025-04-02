@@ -5,7 +5,7 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ workspaceName }) => {
     return (
         <div className="navbar">
             <div className="hidden"></div>
@@ -26,16 +26,18 @@ const Navbar = () => {
             <div className="search">
                 <div className="search-left-container">
                     <button>
-                        Buscar en UTN_MAR_JUE_PWI_TN <CiSearch />
+                        Buscar en {workspaceName} <CiSearch />
                     </button>
                 </div>
-                <div className="nav-btn">
-                    <button className="logout-btn">Cerrar sesion</button>
-                </div>
-                <div className="search-right-container">
-                    <button>
-                        <AiOutlineQuestionCircle />
-                    </button>
+                <div>
+                    <div className="nav-btn">
+                        <button className="logout-btn">Cerrar sesion</button>
+                    </div>
+                    <div className="search-right-container">
+                        <button>
+                            <AiOutlineQuestionCircle />
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

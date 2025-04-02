@@ -11,8 +11,7 @@ const useApiRequest = (url) => {
     };
     const [responseApiState, setResponseApiState] = useState(initialResponseApiState);
 
-    const postRequest = async (body) => {
-        console.log("HOLA POST!!!")
+    const postRequest = async (body) => {        
         try {
             setResponseApiState({ ...initialResponseApiState, loading: true });
             // Crear un objeto para los headers

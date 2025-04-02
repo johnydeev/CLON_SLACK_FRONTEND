@@ -1,0 +1,42 @@
+.messages-list {
+    max-height: 100vh; /* Ajusta la altura según necesites */
+    overflow-y: auto; /* Permite el desplazamiento vertical */    
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column; /* Mensajes en orden normal */
+}
+
+.message-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    /* margin-bottom: 5px; */
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+
+    & span{
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .message-item-left{
+        display: flex;
+        align-items: center;
+
+    }
+}
+
+/* 🔽 Opcional: Para que el scroll inicie desde abajo */
+.messages-list.scroll-bottom {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.message-profile{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 5px;
+
+}

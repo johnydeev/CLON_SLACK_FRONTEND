@@ -25,41 +25,44 @@ import Spinner from "../../Utils/Spinner/Spinner";
 import ENVIROMENT from "../../config/environment";
 import { handleError } from "../../Utils/error.utils";
 
-const BoxMessages = () => {
+const BoxMessages = ({ channel_id, onMessageSent }) => {
     const formInitialState = {
         content: "",
     };
 
-    const { formState, handleOnChange } = useForm(formInitialState);
+    const { formState, setFormState, handleOnChange } = useForm(formInitialState);
 
-    const { responseApiState, postRequest } = useApiRequest(
-        `${ENVIROMENT.URL_API}/api/channels/${6}/messages`
+    const { postRequest } = useApiRequest(
+        `${ENVIROMENT.URL_API}/api/channels/${channel_id}/messages`
     );
 
     const token = JSON.parse(sessionStorage.getItem("authorization_token"));
     const handleSubmit = async (event) => {
-      try{      
-        event.preventDefault();
-        toast("Cargando...", {
-            icon: <Spinner />,
-            duration: 4000,
-        });
-        console.log("Token obtenido en box-messages:", token);
-        const headers = {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-        };
-        
-        const response = await postRequest({
-            content: formState.content,
-            headers,
-        });
-        console.log("Response>>", response);
-      }catch(error){
-        console.log("Error al crear mensaje",error)
-        handleError(error);
+        try {
+            event.preventDefault();
+            toast("Cargando...", {
+                icon: <Spinner />,
+                duration: 4000,
+            });
+            console.log("Token obtenido en box-messages:", token);
+            const headers = {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            };
 
-      }
+            const response = await postRequest({
+                content: formState.content,
+                headers,
+            });
+            console.log("Response mensaje Creado en BoxMessage:", response);
+            if (response.ok) {                
+                onMessageSent();
+                setFormState(formInitialState);
+            }
+        } catch (error) {
+            console.log("Error al crear mensaje", error);
+            handleError(error);
+        }
     };
 
     return (
