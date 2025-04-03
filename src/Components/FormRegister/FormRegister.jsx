@@ -36,13 +36,13 @@ export const FormRegister = () => {
     };
 
     useEffect(() => {
-        const currentPath = window.location.pathname;
+        // const currentPath = window.location.pathname;
         if (isAuthenticatedState && userState._id) {
             navigate(`/user/${userState._id}/workspaces`);
         }
-        if (responseApiState && currentPath == "/register") {
-            navigate(`/user-registred`);
-        }
+        // if (responseApiState && currentPath == "/register") {
+        //     navigate(`/user-registred`);
+        // }
     }, [isAuthenticatedState, userState._id, responseApiState]);
 
     console.log(responseApiState);

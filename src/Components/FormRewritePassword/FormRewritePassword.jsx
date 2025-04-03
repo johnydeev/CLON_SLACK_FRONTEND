@@ -87,9 +87,7 @@ const FormRewritePassword = () => {
                 </div>
 
                 <div className="form-group">
-                    <Link to={`http://localhost:5173/login`}>
-                        ¿Tenes cuenta? Logueate
-                    </Link>
+                    
                     <button type="submit">Cambiar contraseña</button>
                 </div>
             </form>
