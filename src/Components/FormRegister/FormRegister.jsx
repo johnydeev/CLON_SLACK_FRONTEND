@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import ENVIROMENT from "../../config/environment";
 import { useForm } from "../../hooks/useForm";
-import  useApiRequest  from "../../hooks/useApiRequest";
+import useApiRequest from "../../hooks/useApiRequest";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../../Utils/Spinner/Spinner";
-import './FormRegister.css'
+import "./FormRegister.css";
 import { AuthContext } from "../../Context/authContext";
 
 export const FormRegister = () => {
@@ -16,26 +16,14 @@ export const FormRegister = () => {
         // input imagen este debe tener un valor inicial por defecto par aque el urusuario luego pueda subir su imagen personalizada luego de loguearse.
         // profile_img: "",
     };
-    const { isAuthenticatedState, login, userState } = useContext(AuthContext)
 
+    const { isAuthenticatedState, userState } = useContext(AuthContext);
     const { formState, handleOnChange } = useForm(formInitialState);
-
     const { responseApiState, postRequest } = useApiRequest(
         `${ENVIROMENT.URL_API}/api/auth/register`
     );
     const navigate = useNavigate();
-    useEffect(() => {
-            const currentPath = window.location.pathname;
-    
-            if (
-                isAuthenticatedState &&
-                userState._id &&
-                currentPath !== "/register"
-            ) {
-                navigate(`/user/${userState._id}/workspaces`);
-            }
-        }, [isAuthenticatedState, userState._id, navigate])
-        ;
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         toast("Cargando...", {
@@ -46,6 +34,16 @@ export const FormRegister = () => {
         await postRequest(formState);
         // login(responseApiState.data.payload.authorization_token);
     };
+
+    useEffect(() => {
+        const currentPath = window.location.pathname;
+        if (isAuthenticatedState && userState._id) {
+            navigate(`/user/${userState._id}/workspaces`);
+        }
+        if (responseApiState && currentPath == "/register") {
+            navigate(`/user-registred`);
+        }
+    }, [isAuthenticatedState, userState._id, responseApiState]);
 
     console.log(responseApiState);
 

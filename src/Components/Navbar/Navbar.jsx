@@ -4,8 +4,11 @@ import { LuClock3 } from "react-icons/lu";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
 import "./Navbar.css";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/authContext";
 
 const Navbar = ({ workspaceName }) => {
+    const { logout } = useContext(AuthContext)
     return (
         <div className="navbar">
             <div className="hidden"></div>
@@ -31,7 +34,9 @@ const Navbar = ({ workspaceName }) => {
                 </div>
                 <div>
                     <div className="nav-btn">
-                        <button className="logout-btn">Cerrar sesion</button>
+                        <button onClick={logout} className="logout-btn">
+                            Cerrar sesion
+                        </button>
                     </div>
                     <div className="search-right-container">
                         <button>

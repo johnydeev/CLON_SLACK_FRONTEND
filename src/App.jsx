@@ -14,10 +14,10 @@ function App() {
             <Routes>
                 <Route path="/register" element={<RegisterScreen />} />
                 <Route path="/login" element={<LoginScreen />} />
-                    <Route path="/rewrite-password" element={<RewritePasswordScree />} />
-                    <Route path="/reset-password" element={<ResetPasswordScreen />} />
+                <Route path="/rewrite-password" element={<RewritePasswordScree />} />
+                <Route path="/reset-password" element={<ResetPasswordScreen />} />
+                <Route path="/" element={<RegisterScreen />} />
                 <Route element={<ProtectedRoute/>}>
-                    <Route path="/" element={<RegisterScreen />} />
                     <Route path="/user/:user_id/workspaces" element={<WorkspacesScreen />} />
                     <Route path="/user/:user_id/workspaces/:workspace_id" element={<HomeScreen />} />
                     

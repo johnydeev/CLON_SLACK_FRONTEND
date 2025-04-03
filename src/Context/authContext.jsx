@@ -56,6 +56,7 @@ const AuthContextProvider = ({ children }) => {
     };
 
     const login = (authorization_token) => {
+        console.log("Token en Auth", authorization_token);
         sessionStorage.setItem(
             "authorization_token",
             JSON.stringify(authorization_token)

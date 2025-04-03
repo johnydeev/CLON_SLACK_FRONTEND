@@ -25,14 +25,16 @@ export const FormLogin = () => {
     );
 
     const navigate = useNavigate();
-
+    console.log(isAuthenticatedState)
+    console.log(userState._id);
+    
     useEffect(() => {
         const currentPath = window.location.pathname;
-
+        
         if (
             isAuthenticatedState &&
             userState._id &&
-            currentPath !== "/login"
+            currentPath == "/login"
         ) {
             navigate(`/user/${userState._id}/workspaces`);
         }
@@ -47,11 +49,11 @@ export const FormLogin = () => {
         });
         const response = await postRequest(formState);
         console.log("Response>>", response);
-        if (response.payload.authorization_token) {
+        if (response.ok) {
             console.log("ResponseApiSubmit>>", responseApiState);            
-            login(response.payload.authorization_token.authorization_token);
+            login(response.payload.authorization_token);
             await getUser();
-            // navigate(`/user/${workspaceState.data.user_id}/workspaces`);
+            
         } else {
             console.error("Error: La respuesta de la API no es válida.");
             toast.error(

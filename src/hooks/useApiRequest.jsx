@@ -30,17 +30,29 @@ const useApiRequest = (url) => {
                 headers: headers,
                 body: JSON.stringify(body),
             });
-            const data = await response.json();
 
-            if (data.ok) {
-                setResponseApiState((prevState) => {
-                    return { ...prevState, data: data };
-                });
-                toast.success(data.message);
-                return data;
-            } else {
-                throw new ServerError(data.message, data.status);
+            let data;
+            try {
+                data = await response.json();
+            } catch (jsonError) {
+                throw new Error("La respuesta no es un JSON válido");
             }
+
+            // Verificar si la respuesta fue exitosa
+            if (!response.ok) {
+                throw new ServerError(
+                    data.message || "Error en la solicitud",
+                    response.status
+                );
+            }
+
+            
+            setResponseApiState((prevState) => {
+                return { ...prevState, data };
+            });
+            toast.success(data.message);
+            return data;
+            
         } catch (error) {
             setResponseApiState((prevState) => {
                 if (error.status) {
@@ -118,8 +130,8 @@ const useApiRequest = (url) => {
                 ...(options.headers || {}),
             };
             
-            // console.log("Headers:", headers); // Depuración
-            // console.log("URL:", url); // Depuración
+            console.log("Headers:", headers); // Depuración
+            console.log("URL:", url); // Depuración
             const response = await fetch(url, {
                 method: "GET",
                 headers,
@@ -151,50 +163,6 @@ const useApiRequest = (url) => {
             handleError(error)            
         }
     };
-
-    // const getRequest = async () => {
-    //     try {
-    //         const response = await fetch(url, {
-    //             method: "GET",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             }
-    //         });
-    //         const data = await response.json();
-
-    //         if (data.ok) {
-    //             setResponseApiState((prevState) => {
-    //                 return { ...prevState, data: data };
-    //             });
-    //             toast.success(data.message, {
-    //                 richColors: true,
-    //             });
-    //         } else {
-    //             throw new ServerError(data.message, data.status);
-    //         }
-    //         console.log(data);
-    //     } catch (error) {
-    //         setResponseApiState((prevState) => {
-    //             if (error.status) {
-    //                 toast.error(error.message, {
-    //                     description: `ERROR: ${error.status}`,
-    //                 });
-    //                 return { ...prevState, error: error.message };
-    //             }
-    //             toast.error(error.message, {
-    //                 description: `ERROR: ${error.status}`,
-    //             });
-    //             return {
-    //                 ...prevState,
-    //                 error: "No se pudo enviar la informacion al servidor",
-    //             };
-    //         });
-    //     } finally {
-    //         setResponseApiState((prevState) => {
-    //             return { ...prevState, loading: false };
-    //         });
-    //     }
-    // }
 
     return { responseApiState, postRequest, putRequest, getRequest };
 };
