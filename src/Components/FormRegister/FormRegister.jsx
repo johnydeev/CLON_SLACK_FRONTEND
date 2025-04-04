@@ -46,7 +46,7 @@ export const FormRegister = () => {
     }, [isAuthenticatedState, userState._id, responseApiState]);
 
     console.log(responseApiState);
-
+    console.log("URL_FRONT", ENVIROMENT.URL_FRONT);
     return (
         <div className="container">
             <h1>Regístrate</h1>
@@ -103,6 +103,7 @@ export const FormRegister = () => {
                 </div> */}
 
                 <div className="form-group">
+                    
                     <Link to={`${ENVIROMENT.URL_FRONT}/login`}>
                         ¿Tenes cuenta? Logueate
                     </Link>
