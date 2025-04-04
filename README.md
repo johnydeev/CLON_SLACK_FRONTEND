@@ -5,10 +5,20 @@ Slack es un software de comunicación y colaboración empresarial basado en la n
 ## Tech Stack
 
 - **Front:** [Vite](https://vitejs.dev/)  
+  ![Vite](https://img.shields.io/badge/-Vite-purple?style=flat-square&logo=vite&logoColor=white)  
+
 - **Styling:** CSS  
+  ![CSS](https://img.shields.io/badge/-CSS-blue?style=flat-square&logo=css3&logoColor=white)  
+
 - **ORM:** [Prisma](https://www.prisma.io/)  
+  ![Prisma](https://img.shields.io/badge/-Prisma-black?style=flat-square&logo=prisma&logoColor=white)  
+
 - **UI Components:** [React Icons](https://react-icons.github.io/react-icons/)  
+  ![React Icons](https://img.shields.io/badge/-React%20Icons-blue?style=flat-square&logo=react&logoColor=white)  
+
 - **Email:** [Nodemailer](https://nodemailer.com/)  
+  ![Nodemailer](https://img.shields.io/badge/-Nodemailer-yellow?style=flat-square&logo=mailgun&logoColor=white)  
+
 
 
 
