@@ -74,7 +74,7 @@ export const FormResetPassword = () => {
                 </div>                
 
                 <div className="form-group">
-                    <Link to={`${ENVIROMENT.URL_FRONT}/register`}>
+                    <Link to={`/register`}>
                         ¿No estas registrado? Click Aqui
                     </Link>
                     <button type="submit">Loguear</button>

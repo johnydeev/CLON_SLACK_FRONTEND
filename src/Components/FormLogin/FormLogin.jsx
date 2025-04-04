@@ -91,8 +91,9 @@ export const FormLogin = () => {
                 </div>
 
                 <div className="form-group">
-                    <Link to="/reset-password">¿Olvidaste tu contraseña?</Link>
-
+                    <Link to="/reset-password">
+                        ¿Olvidaste tu contraseña?
+                    </Link>
                     <button type="submit">Loguear</button>
                 </div>
             </form>

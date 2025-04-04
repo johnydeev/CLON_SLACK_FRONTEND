@@ -104,7 +104,7 @@ export const FormRegister = () => {
 
                 <div className="form-group">
                     
-                    <Link to={`${ENVIROMENT.URL_FRONT}/login`}>
+                    <Link to={`/login`}>
                         ¿Tenes cuenta? Logueate
                     </Link>
                     <button type="submit">Registrarse</button>
