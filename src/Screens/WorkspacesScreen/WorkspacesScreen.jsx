@@ -17,7 +17,7 @@ const WorkspacesScreen = () => {
         if (userState._id) {
             getWorkspaces();
         }
-    }, [userState._id]);  
+    }, [userState._id]);
     console.log("workspaceState Screen:", workspaceState);
     const workspaces = workspaceState?.data ?? [];
 
