@@ -1,6 +1,6 @@
-# React + Vite
+# Proyecto CLON de Slack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Slack es un software de comunicación y colaboración empresarial basado en la nube. Se clasifica como una herramienta de mensajería instantánea y gestión de trabajo en equipo, diseñada para mejorar la comunicación dentro de organizaciones y equipos de trabajo.
 
 Currently, two official plugins are available:
 
