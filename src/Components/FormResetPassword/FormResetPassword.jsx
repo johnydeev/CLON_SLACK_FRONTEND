@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ENVIROMENT from "../../config/environment";
 import { AuthContext } from "../../Context/authContext";
-import './FormResetPassword.css'
+import "./FormResetPassword.css";
 import { useForm } from "../../hooks/useForm";
 import useApiRequest from "../../hooks/useApiRequest";
 import { toast } from "sonner";
@@ -11,11 +11,11 @@ import Spinner from "../../Utils/Spinner/Spinner";
 export const FormResetPassword = () => {
     const { isAuthenticatedState, userState, login, getUser } =
         useContext(AuthContext);
-    
+
     const userId = userState._id;
     console.log("USERID>>", userId);
     const formInitialState = {
-        email: "",        
+        email: "",
     };
 
     const { formState, handleOnChange } = useForm(formInitialState);
@@ -54,27 +54,30 @@ export const FormResetPassword = () => {
             },
         });
         console.log("Response>>", response);
-        
     };
 
     return (
         <div className="container">
-            <h1>Recupera tu cuenta ingresando tu email registrado</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Ingresa tu email"
-                        autoComplete="username"
-                        onChange={handleOnChange}
-                    />
-                </div>                
+            <h1 className="form-login-h1">
+                Recupera tu cuenta ingresando tu email registrado
+            </h1>
+            <form onSubmit={handleSubmit} className="form-wrapper">
+                <div className="form-content">
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Ingresa tu email"
+                            autoComplete="username"
+                            onChange={handleOnChange}
+                        />
+                    </div>
+                </div>
 
-                <div className="form-group">
-                    <Link to={`/register`}>
+                <div className="form-footer">
+                    <Link to={`/register`} className="link">
                         ¿No estas registrado? Click Aqui
                     </Link>
                     <button type="submit">Loguear</button>

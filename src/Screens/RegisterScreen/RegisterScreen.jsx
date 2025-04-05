@@ -9,7 +9,6 @@ const RegisterScreen = () => {
                 <NavbarRegister />
             </div>
             <div className="form-register">
-
                 <FormRegister />
             </div>
         </div>

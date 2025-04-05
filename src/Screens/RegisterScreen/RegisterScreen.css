@@ -1,14 +1,18 @@
-.register{
+.register {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
     background-color: var(--primary-color);
-    height: 100vh;
+    min-height: 100vh;
+    /* padding: 20px; */
 }
-.navbar-register{
-    display: flex;
+
+.navbar-register {
+    width: 100%;
 }
-.form-register{
+
+.form-register {
+    width: 100%;
     display: flex;
+    justify-content: center;
 }

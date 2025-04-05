@@ -8,11 +8,11 @@ import Spinner from "../../Utils/Spinner/Spinner";
 import "./FormLogin.css";
 import { AuthContext } from "../../Context/authContext";
 
-
 export const FormLogin = () => {
-    const { isAuthenticatedState, userState, login, getUser } = useContext(AuthContext);    
-    const userId = userState._id
-    console.log("USERID>>",userId)
+    const { isAuthenticatedState, userState, login, getUser } =
+        useContext(AuthContext);
+    const userId = userState._id;
+    console.log("USERID>>", userId);
     const formInitialState = {
         email: "",
         password: "",
@@ -25,21 +25,16 @@ export const FormLogin = () => {
     );
 
     const navigate = useNavigate();
-    console.log(isAuthenticatedState)
+    console.log(isAuthenticatedState);
     console.log(userState._id);
-    
+
     useEffect(() => {
         const currentPath = window.location.pathname;
-        
-        if (
-            isAuthenticatedState &&
-            userState._id &&
-            currentPath == "/login"
-        ) {
+
+        if (isAuthenticatedState && userState._id && currentPath == "/login") {
             navigate(`/user/${userState._id}/workspaces`);
         }
     }, [isAuthenticatedState, userState._id, navigate]);
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -50,48 +45,47 @@ export const FormLogin = () => {
         const response = await postRequest(formState);
         console.log("Response>>", response);
         if (response.ok) {
-            console.log("ResponseApiSubmit>>", responseApiState);            
+            console.log("ResponseApiSubmit>>", responseApiState);
             login(response.payload.authorization_token);
             await getUser();
-            
         } else {
             console.error("Error: La respuesta de la API no es válida.");
-            toast.error(
-                "Error al iniciar sesión."
-            );
-        }       
-    }
+            toast.error("Error al iniciar sesión.");
+        }
+    };
 
     return (
         <div className="container">
-            <h1>Ingresa a tu cuenta</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Ingresa tu email"
-                        autoComplete="username"
-                        onChange={handleOnChange}
-                    />
+            <h1 className="form-login-h1">Ingresa a tu cuenta</h1>
+            <form onSubmit={handleSubmit} className="form-wrapper">
+                <div className="form-content">
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Ingresa tu email"
+                            autoComplete="username"
+                            onChange={handleOnChange}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password">Contraseña</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Ingresa tu contraseña"
+                            autoComplete="current-password"
+                            onChange={handleOnChange}
+                        />
+                    </div>
                 </div>
 
-                <div className="form-group">
-                    <label htmlFor="password">Contraseña</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Ingresa tu contraseña"
-                        autoComplete="current-password"
-                        onChange={handleOnChange}
-                    />
-                </div>
-
-                <div className="form-group">
-                    <Link to="/reset-password">
+                <div className="form-footer">
+                    <Link to="/reset-password" className="link">
                         ¿Olvidaste tu contraseña?
                     </Link>
                     <button type="submit">Loguear</button>

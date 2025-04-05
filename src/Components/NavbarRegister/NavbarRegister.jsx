@@ -11,7 +11,7 @@ export const NavbarRegister = () => {
     return (
         <div className="navbar-register">
             <div className="logo">
-                <Link to={`${ENVIROMENT.URL_FRONT}`}>
+                <Link to={`/`}>
                     <img src="/images/slack-logo.png" alt="" width={105} />
                 </Link>
             </div>

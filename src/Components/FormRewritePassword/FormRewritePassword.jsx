@@ -59,35 +59,37 @@ const FormRewritePassword = () => {
 
     return (
         <div className="container">
-            <h1>Resetear contraseña</h1>
-            <form onSubmit={handleSubmit}>                
+            <h1 className="form-login-h1">Resetear contraseña</h1>
+            <form onSubmit={handleSubmit} className="form-wrapper">
+                <div className="form-content">
+                    <div className="form-group">
+                        <label htmlFor="password">Contraseña</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Ingresa tu contraseña"
+                            autoComplete="current-password"
+                            onChange={handleOnChange}
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="password">Contraseña</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Ingresa tu contraseña"
-                        autoComplete="current-password"
-                        onChange={handleOnChange}
-                    />
+                    <div className="form-footer">
+                        <label htmlFor="confirmPassword">
+                            Repetir contraseña
+                        </label>
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Ingresa tu contraseña"
+                            autoComplete="current-password"
+                            onChange={handleOnChange}
+                        />
+                    </div>
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="confirmPassword">Repetir contraseña</label>
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        placeholder="Ingresa tu contraseña"
-                        autoComplete="current-password"
-                        onChange={handleOnChange}
-                    />
-                </div>
-
-                <div className="form-group">
-                    
                     <button type="submit">Cambiar contraseña</button>
                 </div>
             </form>

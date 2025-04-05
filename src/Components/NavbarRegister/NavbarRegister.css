@@ -1,6 +1,4 @@
-
-.navbar-register {
-    
+.navbar-register {    
     font-size: 13px;
     margin-top: 5px;
     display: flex;
@@ -39,10 +37,24 @@
     
     & button {
         margin: 0;
-        font-size: 13px;
+        font-size: 15px;
         background-color: var(--primary-color);
     }
 }
 .menu-underline:hover{
     text-decoration: underline;
+}
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .navbar-register {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-register .menu,
+    .navbar-register .flex-c {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
 }
