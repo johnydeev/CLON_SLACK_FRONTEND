@@ -14,7 +14,8 @@ button {
     .workspace-btn {
         gap: 5px;
         font-size: large;
-    }:hover {
+    }
+    :hover {
         background-color: var(--secondary-color);
     }
     .channels-header-menu-btn {
@@ -28,7 +29,6 @@ button {
         .channels-header-btn {
             height: 36px;
             width: 36px;
-            
         }
     }
 
@@ -96,6 +96,7 @@ button {
         }
 
         & button {
+            width: fit-content;
             margin-top: 0px;
             display: flex;
             align-items: center;
@@ -140,8 +141,6 @@ button {
     }
 }
 
-/* MODAL */
-/* Dropdown */
 .dropdown-button {
     background: #ccc;
     border: none;
@@ -200,10 +199,14 @@ button {
 
 .dropdown-actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
 .dropdown-actions button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     border: none;
     padding: 6px 10px;
     cursor: pointer;

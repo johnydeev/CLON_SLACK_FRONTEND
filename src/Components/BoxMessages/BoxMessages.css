@@ -11,7 +11,7 @@
     align-items: center;
     border-radius: 10px 10px 0 0;
     background-color: #f8f8f8;
-    padding: 6px 12px;
+    padding: 12px 10px;
     gap: 8px;
     
 }
@@ -32,35 +32,27 @@
     }
 }
 
-.box-footer{
-    
+.box-footer{    
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    & button{
-        gap:5px;
-        color: #BBBABB;
-        background-color: transparent;
-        padding: 0;
-        padding: 2px;
+    & button{        
+        width: fit-content;        
+        color: #898989;
+        background-color: #eeeeee;
+        border-radius: 50%;
+        padding: 4px;
         margin: 0;
     }    
     
 }
 .box-footer .plus,
 .box-footer .icons,
-.box-footer .send {
-    
+.box-footer .send {    
     display: flex;
-    align-items: center;
-    
-    
-}
-.box-footer .icons {        
-    padding: 4px 0;        
-    color: #606060;
-    gap: 8px;
+    align-items: center; 
+    gap: 10px;
     
 }
 

@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import "./NavbarRegister.css";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import ENVIROMENT from "../../config/environment";
 import { AuthContext } from "../../Context/authContext";
+import CreateWorkspaceModal from "../CreateWorkspaceModal/CreateWorkspaceModal";
 
 export const NavbarRegister = () => {
     const { isAuthenticatedState , logout } = useContext(AuthContext);
@@ -41,9 +41,7 @@ export const NavbarRegister = () => {
                         <button onClick={logout} className="btn-purple">
                             Cerrar Sesion
                         </button>
-                        <button className="btn-white">
-                            CREAR NUEVO ESPACIO DE TRABAJO
-                        </button>
+                        <CreateWorkspaceModal />
                     </div>
                 ) : (
                     <button className="btn-purple">HABLAR CON VENTAS</button>

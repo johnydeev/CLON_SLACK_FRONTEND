@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     color: black;
-    /* border: 1px solid; */
 
     & button {
         background-color: transparent;
@@ -33,15 +32,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    & .header-messages-top-buttons-left{  
-        text-align: center;      
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        height: 30px;
-        padding: 0;
-        padding: 10px;
-        color: #606060;
-        gap: 4px;
+    & button{
+        width: fit-content;
     }
     & .header-messages-top-buttons-center {
         border: 1px solid #ddd;
@@ -61,8 +53,11 @@
     border-bottom: solid 1px #ddd;
 
     & button {
+        
         display: flex;
         align-items: center;
+        justify-content: start;
+        width: fit-content;
         font-size: 14px;
         border-radius: 5px 5px 0px 0px;
         gap: 4px;

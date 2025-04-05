@@ -32,18 +32,16 @@ export const FormRegister = () => {
         });
         console.log(formState);
         await postRequest(formState);
-        // login(responseApiState.data.payload.authorization_token);
+        
     };
 
     useEffect(() => {
-        // const currentPath = window.location.pathname;
+        
         if (isAuthenticatedState && userState._id) {
             navigate(`/user/${userState._id}/workspaces`);
         }
-        // if (responseApiState && currentPath == "/register") {
-        //     navigate(`/user-registred`);
-        // }
-    }, [isAuthenticatedState, userState._id, responseApiState]);
+        
+    }, [isAuthenticatedState, userState._id, navigate]);
 
     console.log(responseApiState);    
     return (

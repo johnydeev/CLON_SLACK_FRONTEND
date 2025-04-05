@@ -11,26 +11,15 @@
     }
 }
 
-
 .btn-purple {
     margin: 0;
     border: 1px white solid;
     background-color: var(--primary-color);
+    width: auto; /* o un ancho fijo si querés */
+    padding: 10px 20px;
 
     &:hover {
         box-shadow: inset 0 0 0 1.3px white;
-    }
-}
-
-.btn-white {
-    margin: 0;
-    font-weight: 600;
-    color: var(--primary-color);
-    background-color: white;
-    margin-left: 10px;
-
-    &:hover {        
-        box-shadow: inset 0 0 0 1.3px var(--secondary-color);
     }
 }
 .menu {

@@ -81,8 +81,6 @@ const BoxMessages = ({ channel_id, onMessageSent }) => {
                 <PiCodeBlock />
             </div>
             <form onSubmit={handleSubmit}>
-                {" "}
-                {/* Agrega el formulario aquí */}
                 <div className="box-content">
                     <input
                         type="text"
@@ -90,40 +88,34 @@ const BoxMessages = ({ channel_id, onMessageSent }) => {
                         name="content"
                         placeholder="Enviar un mensaje a "
                         onChange={handleOnChange}
-                        value={formState.content} // Asegurar que el input tiene un estado controlado
+                        value={formState.content}
                     />
                 </div>
-                <div className="box-footer">
-                    <div className="icons">
-                        <button className="icons-plus" type="button">
-                            {" "}
-                            {/* type="button" para evitar que dispare el submit */}
-                            <FaPlus />
-                        </button>
-                        <IoTextOutline />
-                        <BsEmojiSmile />
-                        <MdAlternateEmail />
-                        <div className="separator"></div>
-                        <AiOutlineVideoCamera />
-                        <HiOutlineMicrophone />
-                        <div className="separator"></div>
-                        <MdOutlineIndeterminateCheckBox />
-                    </div>
-                    <div className="send">
-                        <button type="submit">
-                            {" "}
-                            {/* Aquí va el botón de enviar */}
-                            <IoMdSend />
-                        </button>
-                        <div className="separator"></div>
-                        <button type="button">
-                            {" "}
-                            {/* Botón sin funcionalidad de submit */}
-                            <IoIosArrowDown />
-                        </button>
-                    </div>
-                </div>
             </form>
+            <div className="box-footer">
+                <div className="icons">
+                    <button className="icon-plus" type="button">
+                        <FaPlus />
+                    </button>
+                    <IoTextOutline />
+                    <BsEmojiSmile />
+                    <MdAlternateEmail />
+                    <div className="separator"></div>
+                    <AiOutlineVideoCamera />
+                    <HiOutlineMicrophone />
+                    <div className="separator"></div>
+                    <MdOutlineIndeterminateCheckBox />
+                </div>
+                <div className="send">
+                    <button type="submit">
+                        <IoMdSend />
+                    </button>
+                    <div className="separator"></div>
+                    <button type="button">
+                        <IoIosArrowDown />
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };

@@ -33,10 +33,10 @@
     border: solid 4px var(--secondary-color);
     border-radius: 10px;
     margin-bottom: 40px;
-background-color: var(--text-color-secondary);
+    background-color: var(--text-color-secondary);
     & .name-workspaces {
         background-color: var(--text-color-secondary);
-        display: block;       
+        display: block;
 
         & span {
             font-size: 20px;
@@ -45,19 +45,32 @@ background-color: var(--text-color-secondary);
         }
     }
 }
-.email-workspace{
+.email-workspace {
     display: flex;
     align-items: center;
     align-self: flex-start;
     padding: 30px 16px;
 }
-.workspaces-list{
+.workspaces-list {
+    max-height: 480px;
     display: flex;
     justify-content: space-between;
     align-self: end;
     width: 100%;
     height: 85%;
     background-color: white;
+    overflow-y: auto;
+    .no-workspaces {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
 }
 .footer-workspaces {
     display: flex;
@@ -76,9 +89,10 @@ background-color: var(--text-color-secondary);
 }
 
 .btn-white {
+    width: fit-content;
     margin: 0;
-    font-size: 13px;
     font-weight: 600;
+    font-size: 13px;
     color: var(--primary-color);
     background-color: white;
     margin-left: 10px;
@@ -93,7 +107,6 @@ background-color: var(--text-color-secondary);
     margin-bottom: -31px;
     margin-left: -20px;
 }
-
 
 /* modal */
 .modal-overlay {

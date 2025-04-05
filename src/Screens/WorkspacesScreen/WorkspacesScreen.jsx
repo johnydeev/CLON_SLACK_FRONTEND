@@ -4,14 +4,13 @@ import { AuthContext } from "../../Context/authContext";
 import { WorkspaceContext } from "../../Context/WorkspaceContext";
 import { NavbarRegister } from "../../Components/NavbarRegister/NavbarRegister";
 import WorkspaceList from "../../Components/WorkspaceList/WorkspaceList";
+import CreateWorkspaceModal from "../../Components/CreateWorkspaceModal/CreateWorkspaceModal";
 const WorkspacesScreen = () => {
 
     const {  userState } = useContext(AuthContext);
-    const { workspaceState, getWorkspaces, createWorkspace } = useContext(WorkspaceContext);
+    const { workspaceState, getWorkspaces } = useContext(WorkspaceContext);
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [workspaceName, setWorkspaceName] = useState("");
-    const user = userState
+    
 
     useEffect(() => {
         if (userState._id) {
@@ -21,29 +20,8 @@ const WorkspacesScreen = () => {
     console.log("workspaceState Screen:", workspaceState);
     const workspaces = workspaceState?.data ?? [];
 
-
-
     console.log("Workspaces>>>>", workspaces);
 
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-        setWorkspaceName(""); // Limpiar input
-    };
-    const handleCreateWorkspace = async (event) => {
-        event.preventDefault();
-        if (!workspaceName.trim()) {
-            alert("El nombre del workspace no puede estar vacío");
-            return;
-        }
-
-        await createWorkspace({ name: workspaceName });
-        getWorkspaces();
-        closeModal();
-    };
     return (
         <div className="workspaces-screen">
             <NavbarRegister />
@@ -54,12 +32,20 @@ const WorkspacesScreen = () => {
 
                 <div className="body-workspaces">
                     <div className="email-workspace">
-                        {user
-                            ? `Espacios de trabajo para ${user.email}`
+                        {userState
+                            ? `Espacios de trabajo para ${userState.email}`
                             : "Cargando..."}
                     </div>
                     <div className="workspaces-list">
-                        <WorkspaceList workspaces={workspaces} />
+                        {   
+                        workspaces.length === 0 
+                            ?
+                            <div className="no-workspaces">
+                                <h2>No tienes espacios de trabajo</h2>
+                                <p>¡Crea uno nuevo!</p>
+                            </div>
+                            : <WorkspaceList workspaces={workspaces} />
+                        }
                     </div>
                 </div>
                 <div className="footer-workspaces">
@@ -69,40 +55,10 @@ const WorkspacesScreen = () => {
                         alt="woman-with-laptop-color-background"
                     />
                     <span>¿Quieres usar Slack con otro equipo?</span>
-                    <button onClick={openModal} className="btn-white">
-                        CREAR NUEVO ESPACIO DE TRABAJO
-                    </button>
+                    <CreateWorkspaceModal/>
                 </div>
             </div>
-            {isModalOpen && (
-                <div className="modal-overlay">
-                    <div className="modal">
-                        <h2>Crear Nuevo Workspace</h2>
-                        <form onSubmit={handleCreateWorkspace}>
-                            <input
-                                type="text"
-                                placeholder="Nombre del Workspace"
-                                value={workspaceName}
-                                onChange={(e) =>
-                                    setWorkspaceName(e.target.value)
-                                }
-                            />
-                            <div className="modal-buttons">
-                                <button type="submit" className="btn-create">
-                                    Crear
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn-cancel"
-                                    onClick={closeModal}
-                                >
-                                    Cancelar
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
+            
         </div>
     );
 };

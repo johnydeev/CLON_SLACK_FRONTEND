@@ -18,6 +18,8 @@ const Channels = ({ workspace, onChannelSelect }) => {
         name: "",
     };
     const { formState, handleOnChange } = useForm(formInitialState);
+    const [channelList, setChannelList] = useState(channels || []);
+
     const { postRequest } = useApiRequest(
         `${ENVIROMENT.URL_API}/api/channels/${workspace_id}`
     );
@@ -48,12 +50,17 @@ const Channels = ({ workspace, onChannelSelect }) => {
                 name: formState.name,
                 headers,
             });
+            console.log("Response Api en CHANNELS:", response);
             if (!response) {
                 throw new ServerError(
                     "Error al obtener respuesta de la API",
                     500
                 );
             }
+            
+            setChannelList((prevState) => 
+            { return [...prevState, response.data.new_channel]}         
+            ); 
             toggleChannelDropdown();
         } catch (error) {
             console.log("Error al crear un canal", error);
@@ -141,9 +148,10 @@ const Channels = ({ workspace, onChannelSelect }) => {
                                 {label === "Canales" &&
                                     activeDropdown === index && (
                                         <div className="channels-list-dropdown-1">
-                                            {channels && channels.length > 0 ? (
+                                            {channelList &&
+                                            channelList.length > 0 ? (
                                                 <ul>
-                                                    {channels.map(
+                                                    {channelList.map(
                                                         (channel, index) => (
                                                             <li
                                                                 key={index}

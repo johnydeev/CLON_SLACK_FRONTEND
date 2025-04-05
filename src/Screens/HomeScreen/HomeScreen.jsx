@@ -53,15 +53,16 @@ const HomeScreen = () => {
                 </aside>
                 <div className="workspace">
                     <div className="channels">
-                        {/* 🆕 Pasar la función para seleccionar un canal */}
                         <Channels
                             workspace={workspace_found}
-                            onChannelSelect={handleChannelSelect} // ✅ Aquí está el evento correctamente pasado
+                            onChannelSelect={handleChannelSelect} 
                         />
                     </div>
                     <div className="messages">
                         <div className="header-messages">
-                            <HeaderMessages channel_name={selectedChannel?.name} />
+                            <HeaderMessages
+                                channel_name={selectedChannel?.name}
+                            />
                         </div>
                         <MessagesList
                             channel_id={selectedChannel?.id}
