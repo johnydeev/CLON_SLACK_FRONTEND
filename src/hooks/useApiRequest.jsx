@@ -14,21 +14,25 @@ const useApiRequest = (url) => {
     const postRequest = async (body) => {        
         try {
             setResponseApiState({ ...initialResponseApiState, loading: true });
-            // Crear un objeto para los headers
+            
             let headers = {
                 "Content-Type": "application/json",
             };
 
-            // Si body tiene headers, sobreponlos
-            if (body.headers) {
+            // Verificar si body.headers existe y es un objeto
+            if (body?.headers && typeof body.headers === "object") {
                 headers = { ...headers, ...body.headers };
             }
 
-            console.log("Body>>", body);
+            // Clonar el body y eliminar headers si existen
+            const { headers: _, ...bodyWithoutHeaders } = body;
+
+            console.log("Body>>", bodyWithoutHeaders);
+
             const response = await fetch(url, {
                 method: "POST",
-                headers: headers,
-                body: JSON.stringify(body),
+                headers,
+                body: JSON.stringify(bodyWithoutHeaders),
             });
 
             let data;
@@ -46,13 +50,11 @@ const useApiRequest = (url) => {
                 );
             }
 
-            
             setResponseApiState((prevState) => {
                 return { ...prevState, data };
             });
             toast.success(data.message);
             return data;
-            
         } catch (error) {
             setResponseApiState((prevState) => {
                 if (error.status) {
@@ -88,16 +90,19 @@ const useApiRequest = (url) => {
                 body: JSON.stringify(body),
             });
             const data = await response.json();
-
+            console.log("Data en putRequest>>", data);
             if (data.ok) {
-                setResponseApiState((prevState) => {
-                    return { ...prevState, data: data };
-                });
+                setResponseApiState((prevState) => ({ 
+
+                    ...prevState, 
+                    data: data 
+                }));
                 toast.success(data.message);
             } else {
                 throw new ServerError(data.message, data.status);
             }
             console.log(data);
+            return data;
         } catch (error) {
             setResponseApiState((prevState) => {
                 if (error.status) {

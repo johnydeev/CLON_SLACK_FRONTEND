@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import ENVIROMENT from "../../config/environment";
 import { AuthContext } from "../../Context/authContext";
 import "./FormRewritePassword.css";
@@ -9,34 +9,47 @@ import { toast } from "sonner";
 import Spinner from "../../Utils/Spinner/Spinner";
 
 const FormRewritePassword = () => {
-    const { isAuthenticatedState, userState, login, getUser } =
-        useContext(AuthContext);
+    const { isAuthenticatedState, userState } = useContext(AuthContext);
     const userId = userState._id;
+
+    const [searchParams] = useSearchParams();
     console.log("USERID>>", userId);
     const formInitialState = {
         password: "",
         confirmPassword: "",
+        reset_token: "",
     };
 
-    const { formState, handleOnChange } = useForm(formInitialState);
+    const { formState, setFormState, handleOnChange } =
+        useForm(formInitialState);
 
-    const { responseApiState, postRequest } = useApiRequest(
-        `${ENVIROMENT.URL_API}/api/auth/login`
+    const { responseApiState, putRequest } = useApiRequest(
+        `${ENVIROMENT.URL_API}/api/auth/reset-password`
     );
 
     const navigate = useNavigate();
 
     useEffect(() => {
-            const currentPath = window.location.pathname;
-    
-            if (
-                isAuthenticatedState &&
-                userState._id &&
-                currentPath !== "/rewrite-password"
-            ) {
-                navigate(`/user/${userState._id}/workspaces`);
-            }
-        }, [isAuthenticatedState, userState._id, navigate]);
+        const currentPath = window.location.pathname;
+
+        if (
+            isAuthenticatedState &&
+            userState._id &&
+            currentPath == "/rewrite-password"
+        ) {
+            navigate(`/user/${userState._id}/workspaces`);
+        }
+    }, [isAuthenticatedState, userState._id, navigate]);
+
+    useEffect(() => {
+        const tokenFromQuery = searchParams.get("reset_token");
+        if (tokenFromQuery) {
+            setFormState((prevState) => ({
+                ...prevState,
+                reset_token: tokenFromQuery,
+            }));
+        }
+    }, [searchParams, setFormState]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -44,16 +57,14 @@ const FormRewritePassword = () => {
             icon: <Spinner />,
             duration: 4000,
         });
-        const response = await postRequest(formState);
-        console.log("Response>>", response);
-        if (response.payload.authorization_token) {
-            console.log("ResponseApiSubmit>>", responseApiState);
-            login(response.payload.authorization_token.authorization_token);
-            await getUser();
-            // navigate(`/user/${workspaceState.data.user_id}/workspaces`);
+        const response = await putRequest(formState);
+        console.log("Response en rewritePass>>", response);
+        if (response.ok) {
+            console.log("ResponseApiSubmit>>", responseApiState);            
+            navigate("/login");
         } else {
             console.error("Error: La respuesta de la API no es válida.");
-            toast.error("Error al iniciar sesión.");
+            
         }
     };
 

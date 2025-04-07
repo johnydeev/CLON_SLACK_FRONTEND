@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import Spinner from "../../Utils/Spinner/Spinner";
 
 export const FormResetPassword = () => {
-    const { isAuthenticatedState, userState, login, getUser } =
+    const { isAuthenticatedState, userState } =
         useContext(AuthContext);
 
     const userId = userState._id;
@@ -80,7 +80,7 @@ export const FormResetPassword = () => {
                     <Link to={`/register`} className="link">
                         ¿No estas registrado? Click Aqui
                     </Link>
-                    <button type="submit">Loguear</button>
+                    <button type="submit">Recuperar clave</button>
                 </div>
             </form>
         </div>
