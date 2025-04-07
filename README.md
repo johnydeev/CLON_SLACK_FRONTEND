@@ -14,6 +14,5 @@ Slack es un software de comunicación y colaboración empresarial basado en la n
 
 - **Notifications:** [Sonner](https://sonner.emilkowal.ski/)  ![Sonner](https://img.shields.io/badge/-Sonner-yellow?style=flat-square&logo=javascript&logoColor=white)
   
-
-- [Link a la pagina](https://frontend-pwa-despliegue.vercel.app)
+## [Link a la pagina](https://frontend-pwa-despliegue.vercel.app)
 
