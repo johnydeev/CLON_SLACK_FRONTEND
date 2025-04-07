@@ -29,7 +29,7 @@
 }
 .channels{
     background-color: var(--third-color);
-    padding: 5px 15px;
+    padding: 5px 8px;
     border-radius: 5px 0 0 0;
     width: 24%;    
 }

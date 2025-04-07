@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import { RiArrowDownSLine, RiMenu5Line } from "react-icons/ri";
 import { BiEdit } from "react-icons/bi";
 import { BsChatText } from "react-icons/bs";
-import { MdOutlineHeadphones, MdArrowRight } from "react-icons/md";
+import { MdOutlineHeadphones } from "react-icons/md";
 import { VscSend } from "react-icons/vsc";
-import { Link } from "react-router-dom";
 import useApiRequest from "../../hooks/useApiRequest";
 import ENVIROMENT from "../../config/environment";
 import "./Channels.css";
 import { useForm } from "../../hooks/useForm";
 import { handleError, ServerError } from "../../Utils/error.utils";
+import ChannelsList from "../ChannelsList/ChannelsList";
 
 const Channels = ({ workspace, onChannelSelect }) => {
-    const { name, _id: workspace_id, channels } = workspace;
+    const { name: workspaceName, _id: workspace_id, channels } = workspace;
 
     const formInitialState = {
         name: "",
@@ -25,12 +25,8 @@ const Channels = ({ workspace, onChannelSelect }) => {
     );
 
     const [activeItem, setActiveItem] = useState(null);
-    const [activeDropdown, setActiveDropdown] = useState(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
     const handleActiveItem = (index) => setActiveItem(index);
-    const toggleDropdown = (index) =>
-        setActiveDropdown(activeDropdown === index ? null : index);
     const toggleChannelDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
     const token = JSON.parse(sessionStorage.getItem("authorization_token"));
@@ -57,10 +53,10 @@ const Channels = ({ workspace, onChannelSelect }) => {
                     500
                 );
             }
-            
-            setChannelList((prevState) => 
-            { return [...prevState, response.data.new_channel]}         
-            ); 
+
+            setChannelList((prevState) => {
+                return [...prevState, response.data.new_channel];
+            });
             toggleChannelDropdown();
         } catch (error) {
             console.log("Error al crear un canal", error);
@@ -73,16 +69,12 @@ const Channels = ({ workspace, onChannelSelect }) => {
         <>
             <div className="channels-header">
                 <button className="workspace-btn">
-                    {name} <RiArrowDownSLine />
+                    {workspaceName} <RiArrowDownSLine />
                 </button>
-                <div className="channels-header-menu-btn">
-                    <button className="channels-header-btn">
-                        <RiMenu5Line />
-                    </button>
-                    <button className="channels-header-btn">
-                        <BiEdit />
-                    </button>
-                </div>
+
+                <button className="channels-edit-btn">
+                    <BiEdit />
+                </button>
             </div>
 
             <div className="channels-list">
@@ -107,77 +99,11 @@ const Channels = ({ workspace, onChannelSelect }) => {
                         </div>
                     ))}
                 </div>
-
-                <div className="color-w channels-list-dropdown">
-                    {["Canales", "Mensajes Directos", "Aplicaciones"].map(
-                        (label, index) => (
-                            <div
-                                className={`${
-                                    activeDropdown === index
-                                        ? "active channels-list-dropdown-items"
-                                        : ""
-                                }`}
-                                key={index}
-                            >
-                                <div>
-                                    <button
-                                        onClick={() => toggleDropdown(index)}
-                                    >
-                                        <i
-                                            className={
-                                                activeDropdown === index
-                                                    ? "rotate"
-                                                    : ""
-                                            }
-                                        >
-                                            <MdArrowRight />
-                                        </i>
-                                    </button>
-                                    <button
-                                        onClick={
-                                            label === "Canales"
-                                                ? toggleChannelDropdown
-                                                : undefined
-                                        }
-                                    >
-                                        <span>{label}</span>
-                                        <RiArrowDownSLine />
-                                    </button>
-                                </div>
-
-                                {label === "Canales" &&
-                                    activeDropdown === index && (
-                                        <div className="channels-list-dropdown-1">
-                                            {channelList &&
-                                            channelList.length > 0 ? (
-                                                <ul>
-                                                    {channelList.map(
-                                                        (channel, index) => (
-                                                            <li
-                                                                key={index}
-                                                                onClick={() =>
-                                                                    onChannelSelect(
-                                                                        channel
-                                                                    )
-                                                                }
-                                                                className="channel-item"
-                                                            >
-                                                                # {channel.name}
-                                                            </li>
-                                                        )
-                                                    )}
-                                                </ul>
-                                            ) : (
-                                                <p>
-                                                    No hay canales disponibles
-                                                </p>
-                                            )}
-                                        </div>
-                                    )}
-                            </div>
-                        )
-                    )}
-                </div>
+                <ChannelsList
+                    onChannelSelect={onChannelSelect}
+                    channelList={channelList}
+                    toggleChannelDropdown={toggleChannelDropdown}
+                />
             </div>
 
             {/* Dropdown para crear canal */}
