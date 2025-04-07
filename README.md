@@ -13,7 +13,7 @@ Slack es un software de comunicación y colaboración empresarial basado en la n
 - **UI Components:** [React Icons](https://react-icons.github.io/react-icons/)  ![React Icons](https://img.shields.io/badge/-React%20Icons-blue?style=flat-square&logo=react&logoColor=white)  
 
 - **Notifications:** [Sonner](https://sonner.emilkowal.ski/)  ![Sonner](https://img.shields.io/badge/-Sonner-yellow?style=flat-square&logo=javascript&logoColor=white)
-- 
+  
 
 - [Link a la pagina](https://frontend-pwa-despliegue.vercel.app)
 
