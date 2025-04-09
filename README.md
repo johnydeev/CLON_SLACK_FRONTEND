@@ -24,7 +24,7 @@ Slack es un software de comunicación y colaboración empresarial basado en la n
 - [x] Proteccion y validacion de usuarios mediante middleware
 - [ ] Responsive
 - [ ] Tipado
-- [ ] Handlebars
+- [ ] Handlebars (SSR)
 
 ## Para correr Localmente
 
