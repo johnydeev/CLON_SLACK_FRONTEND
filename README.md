@@ -16,3 +16,38 @@ Slack es un software de comunicación y colaboración empresarial basado en la n
   
 ## [Link a la pagina](https://frontend-pwa-despliegue.vercel.app)
 
+## TODO LIST
+
+- [x] Autenticacion con JWT
+- [x] Confirmacion de correo con **Nodemailer**
+- [x] Recuperacion de contraseña **Nodemailer**
+- [x] Proteccion y validacion de usuarios mediante middleware
+- [ ] Responsive
+- [ ] Tipado
+- [ ] Handlebars
+
+## Para correr Localmente
+
+1. Clonar repositorio
+
+   ```bash
+   git clone https://github.com/johnydeev/FRONTEND_PWA_DESPLIEGUE.git
+   ```
+
+2. Instalar dependencias
+
+   ```bash
+   npm i
+   ```
+
+3. Copiar the `.env example` como `.env` y cargar variables de entorno.
+
+   ```bash
+   cp .env example .env
+   ```
+
+4. Para correr el servidor localmente
+
+   ```bash
+   npm run dev
+   ```
