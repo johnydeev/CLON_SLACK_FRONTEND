@@ -34,8 +34,7 @@ const Channels = ({ workspace, onChannelSelect }) => {
     const handleCreateChannel = async (e) => {
         try {
             e.preventDefault();
-
-            console.log("Token obtenido en Channels:", token);
+            
             const headers = {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,

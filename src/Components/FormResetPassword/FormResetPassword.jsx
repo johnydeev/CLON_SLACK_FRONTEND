@@ -45,7 +45,7 @@ export const FormResetPassword = () => {
             icon: <Spinner />,
             duration: 4000,
         });
-        console.log("Token obtenido en box-messages:", token);
+        
         const response = await postRequest({
             email: formState.email,
             headers: {

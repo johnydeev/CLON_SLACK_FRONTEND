@@ -18,8 +18,7 @@ const MessagesList = ({ channel_id, refreshMessages }) => {
     const token = JSON.parse(sessionStorage.getItem("authorization_token"));
 
     const fetchMessages = async () => {
-        console.log("Token obtenido en box-messages:", token);
-
+        
         const response = await getRequest({
             headers: {
                 "Content-Type": "application/json",

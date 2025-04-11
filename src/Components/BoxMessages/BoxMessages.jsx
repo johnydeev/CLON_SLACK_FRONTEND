@@ -44,7 +44,7 @@ const BoxMessages = ({ channel_id, onMessageSent }) => {
                 icon: <Spinner />,
                 duration: 4000,
             });
-            console.log("Token obtenido en box-messages:", token);
+            
             const headers = {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,

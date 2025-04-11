@@ -22,12 +22,11 @@ export const WorkspaceContextProvider = ({ children }) => {
     let token = JSON.parse(sessionStorage.getItem("authorization_token"));
 
     const [channels, setChannels] = useState([]);
-
+    
     const getWorkspaces = async () => {
         try {
             token = JSON.parse(sessionStorage.getItem("authorization_token"));
-            console.log("Token obtenido:", token);
-
+            
             const workspacesList = await getRequest({
                 headers: {
                     "Content-Type": "application/json",
@@ -59,7 +58,7 @@ export const WorkspaceContextProvider = ({ children }) => {
 
     const createWorkspace = async ({ name: workspaceName }) => {
         try {
-            console.log("Token obtenido:", token);
+            
             const headers = {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
