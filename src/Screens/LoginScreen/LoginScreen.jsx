@@ -6,7 +6,7 @@ import './LoginScreen.css'
 const LoginScreen = () => {
     return (
         <div className="login">
-            <div className="navbar-register">
+            <div>
                 <NavbarRegister />
             </div>
             <div className="form-login">

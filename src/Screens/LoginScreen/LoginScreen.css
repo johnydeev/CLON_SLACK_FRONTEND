@@ -5,12 +5,7 @@
     background-color: var(--primary-color);
     height: 100vh;
 }
-.navbar-register{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
+
 .form-login{
     display: flex;
 }
