@@ -46,7 +46,7 @@ export const FormRegister = () => {
     console.log(responseApiState);    
     return (
         <div className="container">
-            <h1>Regístrate</h1>
+            <h1 className="title-form">Regístrate</h1>
             <form onSubmit={handleSubmit} className="form-wrapper">
                 <div className="form-content">
                     <div className="form-group">
@@ -90,7 +90,9 @@ export const FormRegister = () => {
                 </div>
 
                 <div className="form-footer">
-                    <Link to={`/login`} className="link">¿Tenés cuenta? Logueate</Link>
+                    <Link to={`/login`} className="link">
+                        ¿Tenés cuenta? Logueate
+                    </Link>
                     <button type="submit">Registrarse</button>
                 </div>
             </form>

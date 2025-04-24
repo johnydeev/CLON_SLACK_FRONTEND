@@ -1,14 +1,15 @@
-.navbar-register {    
+.navbar-register {
+    width: 100%;
     font-size: 13px;
-    margin-top: 5px;
     display: flex;
+    justify-content: center;
     color: white;
     border: none;
     padding: 10px;
     text-decoration: none;
 }
 
-.navbar-register > div {
+.navbar-register>div {
     margin-inline: 20px;
 }
 
@@ -29,6 +30,7 @@
     font-size: 15px;
     background-color: var(--primary-color);
 }
+
 
 .menu-underline:hover {
     text-decoration: underline;
@@ -94,13 +96,13 @@
 
     div .navbar-register {
         width: 100%;
-        /* padding: 0 20px; */
+
     }
-    
+
     .navbar-register {
         flex-direction: row;
         align-items: center;
-        justify-content: space-between; 
+        justify-content: space-between;
 
     }
 
@@ -116,11 +118,17 @@
     .mobile-menu.open {
         display: flex;
     }
+
+    .menu-items button {
+        justify-content: flex-start;
+        gap: 5px;
+    }
 }
 
 
 /* DESKTOP: restaurar menú normal y ocultar mobile-menu */
 @media (min-width: 769px) {
+
     .hamburger,
     .mobile-menu,
     .menu-overlay {

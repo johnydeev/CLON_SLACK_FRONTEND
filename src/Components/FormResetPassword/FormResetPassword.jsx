@@ -9,8 +9,7 @@ import { toast } from "sonner";
 import Spinner from "../../Utils/Spinner/Spinner";
 
 export const FormResetPassword = () => {
-    const { isAuthenticatedState, userState } =
-        useContext(AuthContext);
+    const { isAuthenticatedState, userState } = useContext(AuthContext);
 
     const userId = userState._id;
     console.log("USERID>>", userId);
@@ -45,7 +44,7 @@ export const FormResetPassword = () => {
             icon: <Spinner />,
             duration: 4000,
         });
-        
+
         const response = await postRequest({
             email: formState.email,
             headers: {
@@ -58,9 +57,7 @@ export const FormResetPassword = () => {
 
     return (
         <div className="container">
-            <h1 className="form-login-h1">
-                Recupera tu cuenta ingresando tu email registrado
-            </h1>
+            <h1 className="title-form">Recupera tu cuenta</h1>
             <form onSubmit={handleSubmit} className="form-wrapper">
                 <div className="form-content">
                     <div className="form-group">

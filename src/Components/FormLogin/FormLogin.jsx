@@ -56,7 +56,7 @@ export const FormLogin = () => {
 
     return (
         <div className="container">
-            <h1 className="form-login-h1">Logueate</h1>
+            <h1 className="title-form">Logueate</h1>
             <form onSubmit={handleSubmit} className="form-wrapper">
                 <div className="form-content">
                     <div className="form-group">
