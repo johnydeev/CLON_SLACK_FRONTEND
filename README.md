@@ -31,7 +31,7 @@ Slack es un software de comunicación y colaboración empresarial basado en la n
 1. Clonar repositorio
 
    ```bash
-   git clone https://github.com/johnydeev/FRONTEND_PWA_DESPLIEGUE.git
+   git clone https://github.com/johnydeev/FRONTEND_CLON_SLACK.git
    ```
 
 2. Instalar dependencias
