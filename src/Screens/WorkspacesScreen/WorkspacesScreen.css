@@ -89,8 +89,7 @@
 }
 
 .btn-white {
-    width: fit-content;
-    margin: 0;
+    width: fit-content;    
     font-weight: 600;
     font-size: 13px;
     color: var(--primary-color);
@@ -160,4 +159,32 @@
     border: none;
     cursor: pointer;
     border-radius: 5px;
+}
+
+@media (max-width: 768px){
+    
+    .workspaces-screen {
+        height: 100vh;
+        
+    }
+    .container-workspaces {
+        width: 90%;
+    }
+    .welcome {
+        font-size: 28px;
+    }
+    .body-workspaces {
+        height: 100%;
+    }
+    .email-workspace {
+        padding: 20px 16px;
+                
+    }
+    .btn-white{
+        margin: 10px 10px 0px 0px;
+    }
+    .footer-workspaces {
+        display: none;
+    }
+    
 }

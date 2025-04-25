@@ -47,7 +47,9 @@ export const NavbarRegister = () => {
                             <button onClick={logout} className="btn-purple">
                                 Cerrar Sesión
                             </button>
-                            <CreateWorkspaceModal />
+                            <div className="create-workspace-btn">
+                                <CreateWorkspaceModal />
+                            </div>
                         </>
                     ) : (
                         <button className="btn-purple">
