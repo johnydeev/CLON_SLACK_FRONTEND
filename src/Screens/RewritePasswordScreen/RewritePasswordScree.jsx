@@ -4,7 +4,7 @@ import FormRewritePassword from "../../Components/FormRewritePassword/FormRewrit
 
 const RewritePasswordScree = () => {
     return (
-        <div className="login">
+        <div className="form-screen">
             <div className="navbar-register">
                 <NavbarRegister />
             </div>

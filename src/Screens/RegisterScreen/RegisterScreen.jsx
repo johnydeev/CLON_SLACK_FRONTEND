@@ -4,8 +4,8 @@ import "./RegisterScreen.css";
 
 const RegisterScreen = () => {
     return (
-        <div className="register">
-            <div className="navbar-register">
+        <div className="form-screen">
+            <div className="navbar-register-screen">
                 <NavbarRegister />
             </div>
             <div className="form-register">
