@@ -96,7 +96,7 @@
 
     div .navbar-register {
         width: 100%;
-        padding: 20px 20px 0px;
+        padding: 15px 15px 0px;
 
     }
 
@@ -127,7 +127,14 @@
     
 }
 
+@media (max-width: 480px) {
+    div .navbar-register {
+        width: 100%;
+        padding: 15px 0px 0px;
 
+    }
+
+}
 /* DESKTOP: restaurar menú normal y ocultar mobile-menu */
 @media (min-width: 769px) {
 
