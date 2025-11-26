@@ -1,7 +1,6 @@
 import React from "react";
 import { NavbarRegister } from "@/Components/NavbarRegister/NavbarRegister"
 import { FormLogin } from "@/Components/FormLogin/FormLogin"
-import './LoginScreen.css'
 
 const LoginScreen = () => {
     return (
